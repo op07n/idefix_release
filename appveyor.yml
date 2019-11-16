@@ -1,0 +1,22 @@
+image: Visual Studio 2019 Preview
+  
+before_build:
+  - git clone https://github.com/rgalarcia/Idefix.git
+  - cmd: cd Idefix  
+  - cmd: nuget restore
+
+install:
+  appveyor DownloadFile https://dist.nuget.org/win-x86-commandline/latest/nuget.exe
+
+build:
+  project: C:\projects\Idefix\Idefix.sln    # path to Visual Studio solution or project
+  parallel: false                                       # enable MSBuild parallel builds
+  verbosity: normal                                     # MSBuild verbosity level (quiet|minimal|normal|detailed)
+
+after_build:
+  - 7z a Idefix.zip "%APPVEYOR_BUILD_FOLDER%\Idefix\bin\Debug\*.*"
+
+artifacts:  # Archive the generated packages in the ci.appveyor.com build report.  - path: bin\Debug\*
+  - path: Idefix.zip
+    name: artifacts-all
+    
