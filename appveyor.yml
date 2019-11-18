@@ -20,3 +20,12 @@ artifacts:  # Archive the generated packages in the ci.appveyor.com build report
   - path: Idefix\Idefix.zip
     name: artifacts-all
     
+deploy:
+  release: v$(appveyor_build_version)
+  description: idefix_release
+  tag: v$(appveyor_build_version)
+  provider: GitHub
+  auth_token:
+     secure: yrM69KAMKsN0o1btzkUu5VaJuPoP5UeLEjXAL5Mk1/30WiPKeryMi0GE/PcIy6DO
+  artifact: 'Idefix\Idefix.zip'    
+    
