@@ -17,7 +17,7 @@ after_build:
   - 7z a Idefix.7z "%APPVEYOR_BUILD_FOLDER%\Idefix\Idefix\bin\Debug"
 
 artifacts:  # Archive the generated packages in the ci.appveyor.com build report.  - path: bin\Debug\*
-  - path: Idefix\Idefix.zip
+  - path: Idefix\Idefix.7z
     name: artifacts-all
     
 deploy:
